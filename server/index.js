@@ -1,3 +1,6 @@
+// apply NODE_ENV first
+process.env.NODE_ENV = 'development'
+
 const Koa = require('koa')
 const convert = require('koa-convert')
 const serve = require('koa-static')

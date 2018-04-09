@@ -8,7 +8,7 @@ const pkg = require('./package.json')
 
 const cwd = process.cwd()
 
-module.exports = {
+const config =  {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
     app: process.env.NODE_ENV === 'production' ? [
@@ -89,7 +89,6 @@ module.exports = {
     }], {
       ignore: ['README.md']
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: true,
@@ -99,3 +98,9 @@ module.exports = {
     })
   ]
 }
+
+if (process.env.NODE_ENV === 'development') {
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
+}
+
+module.exports = config
