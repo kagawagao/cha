@@ -5,12 +5,14 @@ import isArray from 'lodash/isArray'
 import isEmpty from 'lodash/isEmpty'
 import isNil from 'lodash/isNil'
 import isPlainObject from 'lodash/isPlainObject'
+import store from 'store'
 
 const defaultAction = (payload) => payload
 
 const defaultReducer = (state, {payload}) => payload
 
 const createModel = ({
+  namespace,
   state,
   actions,
   reducers
@@ -54,9 +56,15 @@ const createModel = ({
     })
   }
 
+  const reducer = handleActions(reducers, state)
+
+  if (namespace) {
+    store.injectReducer(namespace, reducer)
+  }
+
   return {
     actions: createdActions,
-    reducer: handleActions(reducers, state)
+    reducer
   }
 }
 

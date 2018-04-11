@@ -12,7 +12,7 @@ const pkg = require('./package.json')
 const cwd = process.cwd()
 
 // generate css loader for specific lang
-function getCSSLoader(lang) {
+function getCSSLoader (lang) {
   let loaders = []
   if (process.env.NODE_ENV === 'development') {
     loaders = [{
@@ -158,7 +158,9 @@ const config = {
     }),
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Application is running at http://${process.env.HOST || '0.0.0.0'}:${process.env.PORT || 3000}`]
+        messages: process.env.NODE_ENV === 'development' ? [
+          `Application is running at http://${process.env.HOST || '0.0.0.0'}:${process.env.PORT || 3000}`
+        ] : null
       }
     })
   ],
@@ -166,6 +168,9 @@ const config = {
     splitChunks: {
       chunks: 'all'
     }
+  },
+  performance: {
+    assetFilter: (assetFilename) => assetFilename.endsWith('.js')
   }
 }
 
@@ -203,6 +208,5 @@ if (process.env.NODE_ENV === 'production') {
     })
   ]
 }
-
 
 module.exports = config

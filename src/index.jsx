@@ -8,6 +8,6 @@ const mountNode = document.getElementById('root')
 
 ReactDOM.render((
   <Provider store={store}>
-    <App history={history}/>
+    <App history={history} />
   </Provider>
 ), mountNode)

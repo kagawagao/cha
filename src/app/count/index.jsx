@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Button } from 'antd'
 import createModel from 'utils/model'
-import store from 'store'
+import {hot} from 'react-hot-loader'
 
-const { actions, reducer } = createModel({
+const { actions } = createModel({
+  namespace: 'count',
   state: 0,
   actions: [{
     plus: count => Promise.resolve(count)
@@ -17,12 +18,7 @@ const { actions, reducer } = createModel({
   }
 })
 
-store.injectReducer('count', reducer)
-
-@connect(state => ({
-  count: state.count
-}), dispatch => bindActionCreators(actions, dispatch))
-export default class Count extends React.Component {
+class Count extends React.Component {
   static propTypes = {
     count: PropTypes.number,
     plus: PropTypes.func,
@@ -41,3 +37,7 @@ export default class Count extends React.Component {
     )
   }
 }
+
+export default hot(module)(connect(state => ({
+  count: state.count
+}), dispatch => bindActionCreators(actions, dispatch))(Count))

@@ -25,14 +25,11 @@ compiler.run((err, stats) => {
 
   if (stats.hasErrors()) {
     // console.error(statsInfo.errors)
-    console.log('Build failed with errors, see above\n')
-    process.exit(1)
+    // console.log('Build failed with errors, see above\n')
   } else if (stats.hasWarnings()) {
     // console.warn(statsInfo.warnings)
-    console.log('Build success with warnings, see above\n')
-    process.exit(0)
+    // console.log('Build success with warnings, see above\n')
   } else {
-    console.log('Compile success\n')
-    process.exit(0)
+    // console.log('Compile success\n')
   }
 })
