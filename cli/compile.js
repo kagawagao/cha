@@ -3,13 +3,36 @@ process.env.NODE_ENV = 'production'
 
 const webpack = require('webpack')
 const webpackConfig = require('../webpack.config')
+const rimraf = require('rimraf')
 
-webpack(webpackConfig).run((err, stats) => {
+// clean dist first
+rimraf.sync(webpackConfig.output.path)
+
+// create compiler
+console.log('\nClean dist dir')
+const compiler = webpack(webpackConfig)
+
+console.log('\nCompile start')
+
+compiler.run((err, stats) => {
+  // normal error from process
   if (err) {
-    console.error(err)
+    console.error(err.stack || err)
+    process.exit(1)
   }
 
-  const jsonStats = stats.toJson()
+  // const statsInfo = stats.toJson()
 
-  console.dir(jsonStats)
+  if (stats.hasErrors()) {
+    // console.error(statsInfo.errors)
+    console.log('Build failed with errors, see above\n')
+    process.exit(1)
+  } else if (stats.hasWarnings()) {
+    // console.warn(statsInfo.warnings)
+    console.log('Build success with warnings, see above\n')
+    process.exit(0)
+  } else {
+    console.log('Compile success\n')
+    process.exit(0)
+  }
 })
