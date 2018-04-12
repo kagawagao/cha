@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { Button } from 'antd'
-import createModel from 'utils/model'
 import {hot} from 'react-hot-loader'
+import { createModel, connect } from 'erux'
 
 const { actions } = createModel({
   namespace: 'count',
@@ -40,4 +38,4 @@ class Count extends React.Component {
 
 export default hot(module)(connect(state => ({
   count: state.count
-}), dispatch => bindActionCreators(actions, dispatch))(Count))
+}), actions)(Count))

@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, compose } from 'redux'
+import {createStore} from 'erux'
 import promiseMiddleware from 'redux-promise'
 import createHistory from 'history/createHashHistory'
 import { makeRootReducer } from './reducer'
@@ -8,16 +8,16 @@ import { updateLocation } from './reducer/location'
 export const history = createHistory()
 
 // middleware
-const middleware = [promiseMiddleware]
+const middlewares = [promiseMiddleware]
 
 // enhancer
-const enhancer = []
+const enhancers = []
 
 // initial state
 const initialState = {}
 
 // compose
-let composeWithEnhancer = compose
+let composeWithEnhancer
 
 // use redux chrome extension in development
 if (process.env.NODE_ENV === 'development') {
@@ -26,26 +26,17 @@ if (process.env.NODE_ENV === 'development') {
     composeWithEnhancer = composeWithDevToolsExtension
   } else {
     const { createLogger } = require('redux-logger')
-    middleware.push(createLogger())
+    middlewares.push(createLogger())
   }
 }
 
-const store = createStore(makeRootReducer(), initialState, composeWithEnhancer(
-  applyMiddleware(...middleware),
-  ...enhancer
-))
-
-// async reducers
-store.asyncReducers = {}
-
-// inject reducer
-
-store.injectReducer = (key, reducer) => {
-  if (Object.hasOwnProperty.call(store.asyncReducers, key)) return
-
-  store.asyncReducers[key] = reducer
-  store.replaceReducer(makeRootReducer(store.asyncReducers))
-}
+const store = createStore({
+  middlewares,
+  enhancers,
+  compose: composeWithEnhancer,
+  initialState,
+  initialReducers: makeRootReducer()
+})
 
 // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
 store.unsubscribeHistory = history.listen(updateLocation(store))
@@ -53,7 +44,7 @@ store.unsubscribeHistory = history.listen(updateLocation(store))
 if (module.hot) {
   module.hot.accept('./reducer', () => {
     const { makeRootReducer } = require('./reducer')
-    store.replaceReducer(makeRootReducer(store.asyncReducers))
+    store.hotReplaceReducer(makeRootReducer(store.asyncReducers))
   })
 }
 
