@@ -185,14 +185,14 @@ if (process.env.NODE_ENV === 'production') {
       chunkFilename: '[id].[contenthash].css'
     })
   )
-  config.optimization.splitChunks.cacheGroups = {
-    styles: {
-      name: 'styles',
-      test: /\.css$/,
-      chunks: 'all',
-      enforce: true
-    }
-  }
+  // config.optimization.splitChunks.cacheGroups = {
+  //   styles: {
+  //     name: 'styles',
+  //     test: /\.css$/,
+  //     chunks: 'all',
+  //     enforce: true
+  //   }
+  // }
   config.optimization.minimizer = [
     new UglifyJsPlugin({
       cache: true,

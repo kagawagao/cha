@@ -1,5 +1,5 @@
 import { parsePath } from 'history/PathUtils'
-import {createModel} from 'erux'
+import { createModel } from 'aerux'
 
 export const { actions, reducer } = createModel({
   state: parsePath(window.location.hash.replace('#', '')),

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'antd'
 import {hot} from 'react-hot-loader'
-import { createModel, connect } from 'erux'
+import { createModel, connect } from 'aerux'
 
 const { actions } = createModel({
   namespace: 'count',

@@ -1,4 +1,4 @@
-import {createStore} from 'erux'
+import {createStore} from 'aerux'
 import promiseMiddleware from 'redux-promise'
 import createHistory from 'history/createHashHistory'
 import { makeRootReducer } from './reducer'
@@ -35,7 +35,7 @@ const store = createStore({
   enhancers,
   compose: composeWithEnhancer,
   initialState,
-  initialReducers: makeRootReducer()
+  globalReducers: makeRootReducer()
 })
 
 // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
