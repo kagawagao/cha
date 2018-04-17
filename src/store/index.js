@@ -1,6 +1,7 @@
 import {createStore} from 'aerux'
-import promiseMiddleware from 'redux-promise'
 import createHistory from 'history/createHashHistory'
+import promiseMiddleware from 'redux-promise'
+import messageMiddleware from './middleware/message'
 import { makeRootReducer } from './reducer'
 import { updateLocation } from './reducer/location'
 
@@ -8,7 +9,7 @@ import { updateLocation } from './reducer/location'
 export const history = createHistory()
 
 // middleware
-const middlewares = [promiseMiddleware]
+const middlewares = [promiseMiddleware, messageMiddleware]
 
 // enhancer
 const enhancers = []

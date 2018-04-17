@@ -8,7 +8,7 @@ const { actions } = createModel({
   namespace: 'count',
   state: 0,
   actions: [{
-    plus: count => Promise.resolve(count)
+    plus: [count => Promise.reject(count), () => 'from meta']
   }, 'minus', 'reset'],
   reducers: {
     plus: (state, { payload }) => state + payload,
