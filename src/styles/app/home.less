@@ -1,0 +1,25 @@
+@import "~antd/es/style/themes/default.less";
+
+.home {
+  padding: 16px 20px;
+  flex: 1;
+
+  &-carousel {
+    box-shadow: @shadow-2;
+    border-radius: @border-radius-base;
+    padding: 20px;
+    background-color: @geekblue-2;
+    color: @primary-color;
+
+    &-item {
+      display: flex !important;
+      height: 400px;
+      justify-content: space-around;
+      align-items: center;
+
+      &-img {
+        height: 200px;
+      }
+    }
+  }
+}
