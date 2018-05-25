@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="171px" height="151px" viewBox="0 0 171 151" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Custom-Preset" transform="translate(-15.000000, -21.000000)">
+            <g id="Group" transform="translate(15.000000, 21.000000)">
+                <rect id="Rectangle" fill="#1890FF" x="43" y="0" width="85" height="26"></rect>
+                <g id="Group-3" transform="translate(0.000000, 68.000000)">
+                    <rect id="Rectangle-2" fill="#1890FF" x="0" y="0" width="43" height="20"></rect>
+                    <text id="Module" font-family="FiraMono-Regular, Fira Mono" font-size="8" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="7" y="12">Module</tspan>
+                    </text>
+                </g>
+                <g id="Group-4" transform="translate(128.000000, 63.000000)">
+                    <rect id="Rectangle-2" fill="#1890FF" x="0" y="5" width="43" height="20"></rect>
+                    <text id="Module" font-family="FiraMono-Regular, Fira Mono" font-size="18" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="16" y="17">…</tspan>
+                    </text>
+                </g>
+                <g id="Group-2" transform="translate(64.000000, 68.000000)">
+                    <rect id="Rectangle-2" fill="#1890FF" x="0" y="0" width="43" height="20"></rect>
+                    <text id="Module" font-family="FiraMono-Regular, Fira Mono" font-size="8" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="7" y="12">Module</tspan>
+                    </text>
+                </g>
+                <text id="APP" font-family="FiraMono-Regular, Fira Mono" font-size="18" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="69.3" y="19">APP</tspan>
+                </text>
+                <g id="Group-5" transform="translate(20.000000, 24.000000)" stroke="#1890FF">
+                    <path d="M66.7285156,0.554916471 C66.7285156,2.12898257 66.7285156,17.0013021 66.7285156,45.171875" id="Path-2"></path>
+                    <polyline id="Path-3" points="67.0742188 20.5683594 0.68359375 20.5683594 0.68359375 46.5683594"></polyline>
+                    <polyline id="Path-4" points="65.5 20.5351562 129.792969 20.5351562 129.792969 46.5351562"></polyline>
+                </g>
+                <g id="Group-2" transform="translate(0.000000, 131.000000)">
+                    <rect id="Rectangle-2" fill="#1890FF" x="0" y="0" width="43" height="20"></rect>
+                    <text id="Module" font-family="FiraMono-Regular, Fira Mono" font-size="8" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="7" y="12">Module</tspan>
+                    </text>
+                </g>
+                <g id="Group-5" transform="translate(21.000000, 87.000000)" stroke="#1890FF">
+                    <path d="M67.0742188,0.554916471 C67.0742188,2.17824991 67.0742188,17.5160642 67.0742188,46.5683594" id="Path-2"></path>
+                    <polyline id="Path-3" points="67.0742188 20.5683594 0.68359375 20.5683594 0.68359375 46.5683594"></polyline>
+                    <polyline id="Path-4" points="65.5 20.5351562 129.792969 20.5351562 129.792969 46.5351562"></polyline>
+                </g>
+                <g id="Group-2" transform="translate(67.000000, 131.000000)">
+                    <rect id="Rectangle-2" fill="#1890FF" x="0" y="0" width="43" height="20"></rect>
+                    <text id="Module" font-family="FiraMono-Regular, Fira Mono" font-size="8" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="7" y="12">Module</tspan>
+                    </text>
+                </g>
+                <g id="Group-4" transform="translate(128.000000, 126.000000)">
+                    <rect id="Rectangle-2" fill="#1890FF" x="0" y="5" width="43" height="20"></rect>
+                    <text id="Module" font-family="FiraMono-Regular, Fira Mono" font-size="18" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="16" y="17">…</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

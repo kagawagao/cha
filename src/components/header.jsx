@@ -7,7 +7,7 @@ export default class Header extends React.PureComponent {
     visible: false
   }
 
-  handleLogin = () => {
+  preview = () => {
     window.location.hash = '#/login'
   }
 
@@ -15,14 +15,10 @@ export default class Header extends React.PureComponent {
     return (
       <header className="header">
         <a href="#" className="header-left">
-          <span className="icon">
-            <span className="icon-left" />
-            <span className="icon-right" />
-          </span>
-          <span className="logo">CHA 🍵</span>
+          <span className="logo">🍵 CHA</span>
         </a>
         <div className="header-right">
-          <Button onClick={this.handleLogin} type="primary" ghost>Login</Button>
+          <Button onClick={this.preview} type="primary">Preview</Button>
         </div>
       </header>
     )
