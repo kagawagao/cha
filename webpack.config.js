@@ -7,6 +7,9 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 // const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { argv } = require('yargs')
+
 const pkg = require('./package.json')
 
 const cwd = process.cwd()
@@ -56,10 +59,12 @@ const config = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
     app: process.env.NODE_ENV === 'production' ? [
+      path.resolve(cwd, 'polyfills/index.js'),
       path.resolve(cwd, 'src/index.jsx')
     ] : [
       'webpack-dev-server/client', // for HMR
       'webpack/hot/dev-server', // for HMR
+      path.resolve(cwd, 'polyfills/index.js'),
       path.resolve(cwd, 'src/index.jsx')
     ]
   },
@@ -185,6 +190,16 @@ if (process.env.NODE_ENV === 'production') {
       chunkFilename: '[id].[contenthash].css'
     })
   )
+
+  if (argv.ana) {
+    // bundle analyzer
+    config.plugins.push(
+      new BundleAnalyzerPlugin({
+        generateStatsFile: true
+      })
+    )
+  }
+
   // config.optimization.splitChunks.cacheGroups = {
   //   styles: {
   //     name: 'styles',

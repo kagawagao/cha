@@ -6,7 +6,7 @@ const webpackConfig = require('../webpack.config')
 const rimraf = require('rimraf')
 
 // clean dist first
-rimraf.sync(webpackConfig.output.path)
+rimraf.sync(`${webpackConfig.output.path}/*`)
 
 // create compiler
 console.log('\nClean dist dir')

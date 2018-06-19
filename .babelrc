@@ -11,7 +11,6 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "@babel/plugin-transform-runtime",
     "add-module-exports",
     ["import", {
       "libraryName": "antd",

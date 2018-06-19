@@ -9,15 +9,20 @@ function isPromise (val) {
 
 export default store => next => action => {
   if (action.type !== 'addMessage' && action.type !== 'delMessage' && !isPromise(action.payload)) {
-    if (isError(action) || (action.meta && (action.meta.success || action.meta.error))) {
+    if (isError(action) || (action.meta && (action.meta.success))) {
       if (!isError(action)) {
-        const message = action.meta.success || action.meta.error
+        const message = action.meta.success
         const msgAction = {
           message
         }
         store.dispatch(addMessage(msgAction))
       } else {
-        const error = action.payload
+        let error = action.payload
+        if (action.meta && action.meta.error) {
+          error = {
+            message: action.meta.error
+          }
+        }
         store.dispatch(addMessage(error))
       }
     }

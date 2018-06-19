@@ -6,7 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon cli/server",
-    "build": "node cli/compile"
+    "build": "node cli/compile",
+    "build:ana": "nodemon cli/compile --ana",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:css": "stylelint ./src/**/*.less && stylelint ./src/**/*.css",
+    "lint:js": "eslint ./src",
+    "prebuild": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -15,7 +20,7 @@
   "author": {
     "name": "kagawagao",
     "email": "kingsongao1221@gmail.com",
-    "url": "http://kingsongao.com"
+    "url": "https://kingsongao.com"
   },
   "license": "MIT",
   "bugs": {
@@ -25,8 +30,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.51",
     "@babel/runtime": "^7.0.0-beta.51",
-    "aerux": "^1.1.2",
+    "aerux": "^1.2.0",
     "antd": "^3.6.3",
+    "flux-standard-action": "^2.0.3",
     "prop-types": "^15.6.1",
     "raf": "^3.4.0",
     "react": "^16.4.1",
@@ -87,6 +93,8 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-dev-server": "^3.1.4",
+    "yargs": "^11.0.0"
   }
 }
