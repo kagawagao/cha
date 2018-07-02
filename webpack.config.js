@@ -13,11 +13,13 @@ const { argv } = require('yargs')
 const pkg = require('./package.json')
 
 const cwd = process.cwd()
+const PRODUCT = process.env.NODE_ENV === 'production'
+const DEV = process.env.NODE_ENV === 'development'
 
 // generate css loader for specific lang
 function getCSSLoader (lang) {
   let loaders = []
-  if (process.env.NODE_ENV === 'development') {
+  if (DEV) {
     loaders = [{
       loader: 'style-loader',
       options: {
@@ -33,7 +35,7 @@ function getCSSLoader (lang) {
       loader: 'css-loader',
       options: {
         importLoaders: lang === 'css' ? 1 : 2,
-        minimize: process.env.NODE_ENV === 'production',
+        minimize: PRODUCT,
         sourceMap: true
       }
     },
@@ -56,9 +58,9 @@ function getCSSLoader (lang) {
 }
 
 const config = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: PRODUCT ? 'production' : 'development',
   entry: {
-    app: process.env.NODE_ENV === 'production' ? [
+    app: PRODUCT ? [
       path.resolve(cwd, 'polyfills/index.js'),
       path.resolve(cwd, 'src/index.jsx')
     ] : [
@@ -71,14 +73,14 @@ const config = {
   output: {
     publicPath: '/',
     path: path.resolve(cwd, 'dist'),
-    filename: process.env.NODE_ENV === 'production' ? '[name].[contenthash].js' : '[name].js',
-    chunkFilename: process.env.NODE_ENV === 'production' ? '[id].[contenthash].js' : '[id].js'
+    filename: PRODUCT ? '[name].[contenthash].js' : '[name].js',
+    chunkFilename: PRODUCT ? '[id].[contenthash].js' : '[id].js'
   },
   resolve: {
     modules: [path.resolve(cwd, 'src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.json', '.css', '.less']
   },
-  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: PRODUCT ? 'source-map' : 'cheap-module-eval-source-map',
   devServer: {
     port: process.env.PORT || 3000,
     host: process.env.HOST || '0.0.0.0',
@@ -141,8 +143,8 @@ const config = {
       hash: false,
       inject: true,
       minify: {
-        collapseWhitespace: process.env.NODE_ENV === 'production',
-        minifyJS: process.env.NODE_ENV === 'production'
+        collapseWhitespace: PRODUCT,
+        minifyJS: PRODUCT
       }
     }),
     new CopyWebpackPlugin(
@@ -163,7 +165,7 @@ const config = {
     }),
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: process.env.NODE_ENV === 'development' ? [
+        messages: DEV ? [
           `Application is running at http://${process.env.HOST || '0.0.0.0'}:${process.env.PORT || 3000}`
         ] : null
       }
@@ -179,11 +181,11 @@ const config = {
   }
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (DEV) {
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (PRODUCT) {
   config.plugins.push(
     new MiniCSSExtractPlugin({
       filename: '[name].[contenthash].css',
