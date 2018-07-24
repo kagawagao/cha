@@ -1,2 +1,4 @@
+import 'whatwg-fetch'
 import '@babel/polyfill'
-import 'raf/polyfill'
+// for android < 4.4
+// import 'raf/polyfill'
