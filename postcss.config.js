@@ -10,6 +10,8 @@ module.exports = {
       ]
     }),
     require('postcss-url')(),
-    require('postcss-cssnext')()
+    require('postcss-preset-env')({
+      stage: 0
+    })
   ]
 }

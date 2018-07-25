@@ -2,6 +2,6 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "function-name-case": null,
-    "no-empty-source": null
+    "font-family-no-duplicate-names": null
   }
 }

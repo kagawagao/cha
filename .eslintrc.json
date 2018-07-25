@@ -4,20 +4,10 @@
     "standard",
     "standard-react"
   ],
-  "plugins": [
-    "babel",
-    "react"
-  ],
-  "rules": {
-    "quotes": ["error", "single"],
-    "semi": ["error", "never"],
-    "no-multiple-empty-lines": "error",
-    "jsx-quotes": ["error", "prefer-double"],
-    "space-before-function-paren": "error",
-    "no-multi-spaces": "error"
-  },
+  "rules": {},
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   }
 }

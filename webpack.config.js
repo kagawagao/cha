@@ -15,6 +15,8 @@ const pkg = require('./package.json')
 const cwd = process.cwd()
 const PRODUCT = process.env.NODE_ENV === 'production'
 const DEV = process.env.NODE_ENV === 'development'
+const HOST = process.env.HOST || '0.0.0.0'
+const PORT = process.env.PORT || 3000
 
 // generate css loader for specific lang
 function getCSSLoader (lang) {
@@ -82,8 +84,8 @@ const config = {
   },
   devtool: PRODUCT ? 'source-map' : 'cheap-module-eval-source-map',
   devServer: {
-    port: process.env.PORT || 3000,
-    host: process.env.HOST || '0.0.0.0',
+    port: PORT,
+    host: HOST,
     publicPath: '/',
     quiet: true,
     noInfo: true,
@@ -147,16 +149,11 @@ const config = {
         minifyJS: PRODUCT
       }
     }),
-    new CopyWebpackPlugin(
-      [
-        {
-          from: path.resolve(cwd, 'src/static')
-        }
-      ],
-      {
-        ignore: ['README.md']
-      }
-    ),
+    new CopyWebpackPlugin([{
+      from: path.resolve(cwd, 'src/static')
+    }], {
+      ignore: ['README.md']
+    }),
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {
@@ -166,7 +163,7 @@ const config = {
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
         messages: DEV ? [
-          `Application is running at http://${process.env.HOST || '0.0.0.0'}:${process.env.PORT || 3000}`
+          `Application is running at http://${HOST}:${PORT}`
         ] : null
       }
     })
