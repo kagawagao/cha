@@ -36,7 +36,7 @@ const store = createStore({
   enhancers,
   compose: composeWithEnhancer,
   initialState,
-  globalReducers: makeRootReducer()
+  initialReducers: makeRootReducer()
 })
 
 // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
