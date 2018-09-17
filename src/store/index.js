@@ -1,4 +1,4 @@
-import {createStore} from 'aerux'
+import { createStore } from 'aerux'
 import createHistory from 'history/createHashHistory'
 import promiseMiddleware from 'redux-promise'
 import messageMiddleware from './middleware/message'
