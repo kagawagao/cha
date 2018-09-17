@@ -3,15 +3,14 @@
     ["@babel/preset-env", {
       "useBuiltIns": "entry"
     }],
-    "@babel/preset-react",
-    ["@babel/preset-stage-0", {
-      "decoratorsLegacy": true
-    }]
+    "@babel/preset-react"
 
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "add-module-exports",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+    "babel-plugin-add-module-exports",
     ["import", {
       "libraryName": "antd",
       "libraryDirectory": "es",
