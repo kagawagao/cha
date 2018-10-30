@@ -1,28 +1,40 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
-import { Router, Switch } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 import Header from 'components/header'
-import AsyncRoute from 'components/async-route'
+import Loading from 'components/loading'
 import routes from 'routes'
 
 import 'antd/es/style/index.less'
 
-const App = ({ history }) => (
-  <div className="app">
-    <Header />
-    <Router history={history}>
-      <Switch>
-        {routes.map(route => (
-          <AsyncRoute key={route.path} {...route} />
-        ))}
-      </Switch>
-    </Router>
-  </div>
-)
+class App extends React.PureComponent {
+  static propTypes = {
+    history: PropTypes.object
+  }
 
-App.propTypes = {
-  history: PropTypes.object
+  componentDidCatch (error, info) {
+    console.error(error)
+    console.info(info)
+  }
+
+  render () {
+    const { history } = this.props
+    return (
+      <div className="app">
+        <Header />
+        <Router history={history}>
+          <Suspense fallback={<Loading />} >
+            <Switch>
+              {routes.map(route => (
+                <Route key={route.path} {...route} />
+              ))}
+            </Switch>
+          </Suspense>
+        </Router>
+      </div>
+    )
+  }
 }
 
 export default hot(module)(App)

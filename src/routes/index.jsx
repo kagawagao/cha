@@ -1,19 +1,25 @@
+import React, { lazy } from 'react'
+
+const Home = lazy(() => import('../app/home'))
+const Demo = lazy(() => import('../app/demo'))
+const Count = lazy(() => import('../app/count'))
+
 export default [{
   path: '/',
   exact: true,
-  getComponent: () => import('../app/home'),
+  component: (props) => <Home {...props} />,
   meta: {
     name: 'home'
   }
 }, {
   path: '/demo',
-  getComponent: () => import('../app/demo'),
+  component: (props) => <Demo {...props} />,
   meta: {
     name: 'demo'
   }
 }, {
   path: '/count',
-  getComponent: () => import('../app/count'),
+  component: (props) => <Count {...props} />,
   meta: {
     name: 'count'
   }
