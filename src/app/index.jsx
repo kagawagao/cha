@@ -6,8 +6,6 @@ import Header from 'components/header'
 import Loading from 'components/loading'
 import routes from 'routes'
 
-import 'antd/es/style/index.less'
-
 class App extends React.PureComponent {
   static propTypes = {
     history: PropTypes.object
