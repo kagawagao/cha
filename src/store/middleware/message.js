@@ -1,5 +1,5 @@
 import { isError } from 'flux-standard-action'
-import {actions as messageActions} from '../reducer/message'
+import { actions as messageActions } from '../reducer/message'
 
 const { addMessage } = messageActions
 

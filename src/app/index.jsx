@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
-import { Router, Switch } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
-import AsyncRoute from 'components/async-route'
-import routes from 'routes'
+import routes from './routes'
 
 const App = ({ history }) => (
   <div className="app">
     <Router history={history}>
-      <Switch>
-        {routes.map(route => (
-          <AsyncRoute key={route.path} {...route} />
-        ))}
-      </Switch>
+      <Suspense fallback={(<div />)}>
+        <Switch>
+          {routes.map(route => (
+            <Route key={route.path} {...route} />
+          ))}
+        </Switch>
+      </Suspense>
     </Router>
   </div>
 )
