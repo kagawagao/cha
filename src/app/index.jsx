@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
-import { Router, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route, Redirect } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
 import Header from 'components/header'
 import Loading from 'components/loading'
@@ -27,6 +27,7 @@ class App extends React.PureComponent {
               {routes.map(route => (
                 <Route key={route.path} {...route} />
               ))}
+              <Redirect from="*" to="/" />
             </Switch>
           </Suspense>
         </Router>
