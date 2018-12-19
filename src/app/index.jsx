@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
 import { Router, Switch, Route } from 'react-router-dom'
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader/root'
 import Header from 'components/header'
 import Loading from 'components/loading'
 import routes from 'routes'
@@ -35,4 +35,4 @@ class App extends React.PureComponent {
   }
 }
 
-export default hot(module)(App)
+export default hot(App)

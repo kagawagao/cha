@@ -6,7 +6,6 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-// const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { argv } = require('yargs')
 
@@ -35,7 +34,6 @@ function getCSSLoader (lang) {
       loader: 'css-loader',
       options: {
         importLoaders: lang === 'css' ? 1 : 2,
-        minimize: PRODUCT,
         sourceMap: true
       }
     },
@@ -114,7 +112,7 @@ const config = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: ['babel-loader', 'react-hot-loader/webpack']
       },
       {
         test: /.css$/,
