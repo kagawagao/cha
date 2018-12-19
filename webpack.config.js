@@ -36,7 +36,6 @@ function getCSSLoader (lang) {
       loader: 'css-loader',
       options: {
         importLoaders: lang === 'css' ? 1 : 2,
-        minimize: PRODUCT,
         sourceMap: true
       }
     },
