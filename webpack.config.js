@@ -7,6 +7,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const WebpackBar = require('webpackbar')
 const { argv } = require('yargs')
 
 const pkg = require('./package.json')
@@ -48,6 +49,7 @@ function getCSSLoader (lang) {
     loaders.push({
       loader: 'less-loader',
       options: {
+        javascriptEnabled: true,
         sourceMap: true
       }
     })
@@ -167,7 +169,11 @@ const config = {
           `Application is running at http://${process.env.HOST || '0.0.0.0'}:${process.env.PORT || 3000}`
         ] : null
       }
+    }),
+    new WebpackBar({
+      name: 'Cha'
     })
+
   ],
   optimization: {
     splitChunks: {
