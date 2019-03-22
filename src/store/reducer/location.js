@@ -1,4 +1,4 @@
-import { parsePath } from 'history/PathUtils'
+import { parsePath } from 'history'
 import { createModel } from 'aerux'
 
 export const { actions, reducer } = createModel({

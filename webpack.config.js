@@ -78,7 +78,10 @@ const config = {
   },
   resolve: {
     modules: [path.resolve(cwd, 'src'), 'node_modules'],
-    extensions: ['.js', '.jsx', '.json', '.css', '.less']
+    extensions: ['.js', '.jsx', '.json', '.css', '.less'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
   },
   devtool: PRODUCT ? 'source-map' : 'cheap-module-eval-source-map',
   devServer: {
