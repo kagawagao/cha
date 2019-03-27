@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 
-const Home = lazy(() => import('./home'))
+const Home = lazy(() => import('../home'))
 
 export default [{
   path: '/',
