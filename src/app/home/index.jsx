@@ -1,7 +1,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 
-import 'styles/app/home.less'
+import './styles/index.less'
 
 class Home extends React.PureComponent {
   render () {
