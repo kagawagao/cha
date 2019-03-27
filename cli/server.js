@@ -7,11 +7,11 @@ const webpackConfig = require('../webpack.config')
 
 const compiler = webpack(webpackConfig)
 
-const {devServer: devServerConfig} = webpackConfig
+const { devServer: devServerConfig } = webpackConfig
 
 const devServer = new WebpackDevServer(compiler, devServerConfig)
 
-const {port, host} = devServerConfig
+const { port, host } = devServerConfig
 
 devServer.listen(port, host, (err) => {
   if (err) {

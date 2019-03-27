@@ -9,12 +9,17 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const WebpackBar = require('webpackbar')
 const { argv } = require('yargs')
+const ip = require('ip')
+
+const localIp = ip.address()
 
 const pkg = require('./package.json')
 
 const cwd = process.cwd()
 const PRODUCT = process.env.NODE_ENV === 'production'
 const DEV = process.env.NODE_ENV === 'development'
+const PORT = process.env.PORT || 3000
+const HOST = process.env.HOST || localIp
 
 // generate css loader for specific lang
 function getCSSLoader (lang) {
@@ -60,13 +65,9 @@ function getCSSLoader (lang) {
 const config = {
   mode: PRODUCT ? 'production' : 'development',
   entry: {
-    app: PRODUCT ? [
-      path.resolve(cwd, 'polyfills/index.js'),
-      path.resolve(cwd, 'src/index.jsx')
-    ] : [
+    app: PRODUCT ? path.resolve(cwd, 'src/index.jsx') : [
       'webpack-dev-server/client', // for HMR
-      'webpack/hot/dev-server', // for HMR
-      path.resolve(cwd, 'polyfills/index.js'),
+      'webpack/hot/dev-server', // for HMR,
       path.resolve(cwd, 'src/index.jsx')
     ]
   },
@@ -85,8 +86,8 @@ const config = {
   },
   devtool: PRODUCT ? 'source-map' : 'cheap-module-eval-source-map',
   devServer: {
-    port: process.env.PORT || 3000,
-    host: process.env.HOST || '0.0.0.0',
+    port: PORT,
+    host: '0.0.0.0',
     publicPath: '/',
     quiet: true,
     noInfo: true,
@@ -157,7 +158,7 @@ const config = {
         }
       ],
       {
-        ignore: ['README.md']
+        ignore: ['README.md', '.gitkeep']
       }
     ),
     new webpack.LoaderOptionsPlugin({
@@ -169,7 +170,7 @@ const config = {
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
         messages: DEV ? [
-          `Application is running at http://${process.env.HOST || '0.0.0.0'}:${process.env.PORT || 3000}`
+          `Application is running at http://${HOST}:${PORT}`
         ] : null
       }
     }),
@@ -204,7 +205,7 @@ if (PRODUCT) {
     // bundle analyzer
     config.plugins.push(
       new BundleAnalyzerPlugin({
-        generateStatsFile: true
+        // generateStatsFile: true
       })
     )
   }
